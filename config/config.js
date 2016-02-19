@@ -8,8 +8,8 @@ var config = {
     app: {
       name: 'guanwang'
     },
-    port: 3000,
-    db: 'mongodb://localhost/guanwang-development'
+    port: 2000,
+    db: 'mongodb://localhost/nodeblog'
   },
 
   test: {
@@ -17,8 +17,8 @@ var config = {
     app: {
       name: 'guanwang'
     },
-    port: 3000,
-    db: 'mongodb://localhost/guanwang-test'
+    port: 2000,
+    db: 'mongodb://localhost/nodeblog-test'
   },
 
   production: {
@@ -26,8 +26,8 @@ var config = {
     app: {
       name: 'guanwang'
     },
-    port: 3000,
-    db: 'mongodb://localhost/guanwang-production'
+    port: 2000,
+    db: 'mongodb://localhost/nodeblog-production'
   }
 };
 

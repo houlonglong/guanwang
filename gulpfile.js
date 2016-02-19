@@ -3,8 +3,7 @@ var gulp = require('gulp'),
   plumber = require('gulp-plumber'),
   livereload = require('gulp-livereload'),
   less = require('gulp-less');
-
-gulp.task('less', function () {
+  gulp.task('less', function () {
   gulp.src('./public/css/*.less')
     .pipe(plumber())
     .pipe(less())

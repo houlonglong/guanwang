@@ -2,9 +2,21 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/app.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/controllers/admin/admin.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/models/category.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/models/post.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/models/user.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/admin/index.jade" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/admin/layout.jade" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/views/index.jade" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/views/layout.jade" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/config/config.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gulpfile.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/node_modules/mongodb/lib/server.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/package.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/components/bootstrap/dist/css/bootstrap.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/components/bootstrap/dist/css/bootstrap.min.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/css/blog.less" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
