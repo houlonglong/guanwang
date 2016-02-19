@@ -1,5 +1,6 @@
 var express = require('express');
 var glob = require('glob');
+var truncate = require('truncate');
 var moment = require('moment');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -19,7 +20,8 @@ module.exports = function(app, config) {
   // app.use(favicon(config.root + '/public/img/favicon.ico'));
   app.use(function (req, res, next) {
     app.locals.pageName = req.path;
-    app.locals.moment = moment;;
+    app.locals.moment = moment;
+    app.locals.truncate = truncate;
 
     console.log(app.locals.pageName)
     next();
