@@ -1,0 +1,56 @@
+extends layout
+
+block content
+  h2.page-header.title-center= post.title
+  .post-meta
+     span.post-created
+        i.fa.fa-calendar
+        &nbsp;
+        = moment(post.created).format('YYYY-MM-DD')
+     span.post-anthor
+        i.fa.fa-user
+        &nbsp;
+        = post.anthor.name
+     span.post-category
+         i.fa.fa-calendar
+         &nbsp;
+         a(href="/posts/category/" + post.category.name,target="_blank")= post.category.name
+     span.post-comment
+          i.fa.fa-calendar
+          &nbsp;
+          = post.comments.length || 0
+     span.post-favorite
+          a(href="/posts/favourites/" + post.id)
+            i.fa.fa-calendar
+            &nbsp;
+            = post.meta.favourites || 0
+  .post-content
+        =post.content
+  .post-comments
+    h3 用户评论
+    .post-comment-list
+      if post.comments.length
+        each comment in post.comments
+          .post-content-item
+            h5.post-content-eamil= comment.email
+              small.pull-right=moment(comment.created).format('YYYY-MM-DD h:m:s')
+            p.post-content-content= comment.content
+      else
+        p.alert.alert-info 还没有有评论
+    form.post-content-form(action="/posts/comment/" + post._id,method='post',enctype='application/x-www-form-urlencoded')
+      h4 添加评论
+      .form-group
+        label(for='email') 邮箱
+        input.form-control(type="email",name="email",placeholder='请输入邮箱...')
+      form-group
+        label(for='content') 内容
+        textarea.form-control(type="text",name="content") 1111
+      button.btn.btn-primary.button-butoom 提交
+
+
+
+
+
+
+block scripts
+  script $(document).ready(function () { console.log('dom ready'); });

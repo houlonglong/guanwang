@@ -1,0 +1,53 @@
+extends ../layout
+
+block content
+
+  h2.page-header 文章列表
+  != messages()
+
+  table.table.table-bordered
+    thead
+       tr
+        th(width="30%") 标题
+        th 分类
+        th 作者
+        th 添加时间
+        th 被赞
+        th 评论
+        th 状态
+        th 管理
+    tbody
+    each  post in posts
+      tr
+        td
+          a(href="/posts/view/" + post._id,target="_blank")= post.title
+        td= post.category.name
+        td= post.anthor.name
+        td= moment(post.created).format('YYYY--MM-DD HH:mm:ss')
+        td= post.meta.favorites || 0
+        td= post.comments.length|| 0
+        td=post.published ? '已发布' :'待发布'
+        td
+            a.btn.btm-sm.btn-success(href="/posts/view/" + post._id,target="_black") 查看
+            &nbsp;&nbsp;
+            a.btn.btm-sm.btn-info(href="/admin/edit/" + post._id,target="_black") 编辑
+            &nbsp;&nbsp;
+            a.btn.btm-sm.btn-danger(href="/admin/posts/delete/" + post._id,target="_black") 删除
+
+  if pageCount > 1
+    nav
+         ul.pagination
+            - var currentPage = 0
+            while currentPage < pageCount
+
+              if(currentPage ==pageNum)
+                li.active
+                  a(href='/admin/posts?page=' + currentPage)=++currentPage
+              else
+                li
+                  a(href='/admin/posts?page=' + currentPage)=++currentPage
+
+
+block scripts
+    script $(document).ready(function () { console.log('dom ready'); });
+

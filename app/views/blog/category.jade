@@ -1,12 +1,12 @@
 extends layout
 
 block content
-  h2.page-header
-     Node全栈博客系统
+    h2.page-header
+      = category.name +'分类下所有文章\b'+'      '+'共有' + posts.length + '篇'
     each post in posts
       div.post
         h3.post-title
-          a(href="/posts/view/" + post.slug,target="_blank")
+          a(href="/posts/view/" + post.id,target="_blank")
               =post.title
         div.post-abstract
             =truncate(post.content,160)
@@ -28,21 +28,4 @@ block content
                 被赞:&nbsp
                 =post.meta.favorite || 0
             span.post-category
-                a(href="/posts/view/" + post.slug,target="_blank") 查看全文
-    if pageCount > 1
-      console.log(pageCount)
-      nav
-         ul.pagination
-            - var currentPage = 0
-            while currentPage < pageCount
-
-              if(currentPage ==pageNum)
-                li.active
-                  a(href='/posts?page=' + currentPage)=++currentPage
-              else
-                li
-                  a(href='/posts?page=' + currentPage)=++currentPage
-
-
-block scripts
-    script $(document).ready(function () { console.log('dom ready'); });
+                a(href="/posts/view/" + post.id,target="_blank") 查看全文

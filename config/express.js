@@ -8,8 +8,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compress = require('compression');
 var methodOverride = require('method-override');
+var mongoose = require('mongoose');
+var session = require('express-session');
+var flash = require('connect-flash');
+var messages = require('express-messages');
+var Category = mongoose.model('category');
 
 module.exports = function(app, config) {
+
   var env = process.env.NODE_ENV || 'development';
   app.locals.ENV = env;
   app.locals.ENV_DEVELOPMENT = env == 'development';
@@ -18,13 +24,22 @@ module.exports = function(app, config) {
   app.set('view engine', 'jade');
 
   // app.use(favicon(config.root + '/public/img/favicon.ico'));
+
   app.use(function (req, res, next) {
+
     app.locals.pageName = req.path;
     app.locals.moment = moment;
     app.locals.truncate = truncate;
 
-    console.log(app.locals.pageName)
-    next();
+    Category.find(function(err,categories){
+      if(err){
+        return next(err)
+      }
+      app.locals.categories = categories;
+      next();
+    })
+
+
   });
   app.use(logger('dev'));
   app.use(bodyParser.json());
@@ -32,6 +47,18 @@ module.exports = function(app, config) {
     extended: true
   }));
   app.use(cookieParser());
+  app.use(session({
+    secret: 'nodeblog',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+  }));
+  app.use(flash());
+  app.use(function(req,res,next){
+    res.locals.messages =messages(req,res)
+    next();
+  })
+
   app.use(compress());
   app.use(express.static(config.root + '/public'));
   app.use(methodOverride());
@@ -48,24 +75,24 @@ module.exports = function(app, config) {
     next(err);
   });
 
-  if(app.get('env') === 'development'){
-    app.use(function (err, req, res, next) {
-      res.status(err.status || 500);
-      res.render('error', {
-        message: err.message,
-        error: err,
-        title: 'error'
-      });
-    });
-  }
-
-  app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-      res.render('error', {
-        message: err.message,
-        error: {},
-        title: 'error'
-      });
-  });
+  //if(app.get('env') === 'development'){
+  //  app.use(function (err, req, res, next) {
+  //    res.status(err.status || 500);
+  //    res.render('error', {
+  //      message: err.message,
+  //      error: err,
+  //      title: 'error'
+  //    });
+  //  });
+  //}
+  //
+  //app.use(function (err, req, res, next) {
+  //  res.status(err.status || 500);
+  //    res.render('error', {
+  //      message: err.message,
+  //      error: {},
+  //      title: 'error'
+  //    });
+  //});
 
 };

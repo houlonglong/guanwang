@@ -33,31 +33,32 @@ block main
                 .col-sm-3.col-md-2.sidebar
                     ul.nav.nav-sidebar
                         li.active
-                            a(href="#")
-                                i.fa.fa-files-o 
+                            a(href="/admin/posts")
+                                i.fa.fa-files-o
                                 | &nbsp;文章列表
 
                         li
-                            a(href="#") 
-                                i.fa.fa-pencil 
+                            a(href="/admin/posts/add")
+                                i.fa.fa-pencil
                                 | &nbsp;添加文章
                         li
-                            a(href="#") 
-                                i.fa.fa-align-justify 
+                            a(href="/admin/posts/categories/add")
+                                i.fa.fa-align-justify
                                 | &nbsp;分类列表
                         li
-                            a(href="#") 
-                                i.fa.fa-plus 
+                            a(href="/admin/users/password")
+                                i.fa.fa-plus
                                 | &nbsp;添加分类
 
                     ul.nav.nav-sidebar
                         li
                             a(href="")
-                                i.fa.fa-lock 
+                                i.fa.fa-lock
                                 | &nbsp;修改密码
                         li
 
                 .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-                    block content
+                  //!= messages()
+                  block content
 
 
