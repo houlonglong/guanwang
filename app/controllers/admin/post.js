@@ -9,13 +9,9 @@ module.exports = function (app) {
 };
 
 router.get('/', function (req, res, next) {
-  var soretby = req.jquery.sortby ? req.query.sortby : 'created';
-  var sortdir = req.jquery.sortdir ? req.query.sortdir : 'desc';
 
-
-
-    Post.find({published:true})
-      .sort(soretby)
+  Post.find({published:true})
+      .sort('category')
       .populate('anthor')
       .populate('category')
       .exec(function (err, posts) {

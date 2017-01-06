@@ -32,7 +32,7 @@ block content
             &nbsp;&nbsp;
             a.btn.btm-sm.btn-info(href="/admin/edit/" + post._id,target="_black") 编辑
             &nbsp;&nbsp;
-            a.btn.btm-sm.btn-danger(href="/admin/posts/delete/" + post._id,target="_black") 删除
+            a.btn.btm-sm.btn-danger(data-id=post._id) 删除
 
   if pageCount > 1
     nav
@@ -49,5 +49,45 @@ block content
 
 
 block scripts
-    script $(document).ready(function () { console.log('dom ready'); });
+    script(type='text/javascript').
+      $(function(){
+        $('.btn-danger').click(function(){
+          var id = $(this).data("id").replace("\"","").replace("\"","");
+          //console.log(id);
+          //alert(id);
+          var self = this;
+          $.get('/admin/posts/delete/' + id,function(){
+            //alert("删除成功");
+            $(self).parents("tr").remove();
+            location.reload();
+          })
+        })
+      });
 
+<script type="text/html" id="tpl_package_item">
+<div >
+<p>9.9折</p>
+<p>立即到账</p>
+</div>
+<div>
+<p>9.9折</p>
+<p>3个月</p>
+</div>
+<div class="xuanzhong">
+<p>9.63折</p>
+<p>6个月</p>
+<i class="duitou"></i>
+</div>
+<div>
+<p>9.19折</p>
+<p>12个月</p>
+</div>
+<div>
+<p>9.1折</p>
+<p>18个月</p>
+</div>
+<div>
+<p>9.0折</p>
+<p>24个月</p>
+</div>
+</script>
